@@ -17,6 +17,10 @@ Step 2 — A store for courses
 
  In Store<T> class :
  when you try to use the generic type Store<T> without specifying a type argument, you will encounter the error message:
- 'T' does not contain a definition for 'Id' and no accessible extension method 'Id' accepting a first argument of type 'T' could be found (are you missing a using directive or an assembly reference?)
- Explaination : This error occurs because the generic type parameter 'T' does not have a constraint that ensures it has an 'Id' property.
+ T does not contain a definition for 'Id' and no accessible extension method Id accepting a first argument of type T could be found (are you missing a using directive or an assembly reference?
+ Explaination : This error occurs because the generic type parameter T does not have a constraint that ensures it has an Id property.
 
+ Step 7 — Prove it in Main
+
+  new Store<string>()        Must NOT compile:
+  Explanation: This will not compile because the generic type parameter T is constrained to types that have an Id property, and string does not have an Id property.

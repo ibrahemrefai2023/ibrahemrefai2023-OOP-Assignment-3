@@ -10,15 +10,23 @@ public static class EnumerableExtensions
             throw new ArgumentOutOfRangeException(nameof(pageNumber), "Page number must be greater than or equal to 1.");
         if (pageSize < 1)
             throw new ArgumentOutOfRangeException(nameof(pageSize), "Page size must be greater than or equal to 1.");
-        
-        foreach( var item in source)
+
+        var firstItemIndex = (pageNumber - 1) * pageSize;
+        var lastItemIndex = firstItemIndex + pageSize;
+
+        var index = 0;
+
+        foreach (var item in source)
         {
-            var index = Array.IndexOf(source.ToArray(), item);
-            var firstItemIndex = (pageNumber - 1) * pageSize;
-            if (index >= firstItemIndex && index < firstItemIndex + pageSize)
+            if (index >= firstItemIndex && index < lastItemIndex)
             {
                 yield return item;
             }
+
+            index++;
+
+            if (index >= lastItemIndex)
+                yield break;
         }
     }
 
