@@ -18,6 +18,21 @@
             {
                 Console.WriteLine($" - {s.Name}");
             }
+            Console.WriteLine("------------------------------------------------------------------------------");
+            Course course1 = new Course { Id = 1, Title = "Introduction to Programming", Price = 100.00m };
+            Course course2 = new Course { Id = 2, Title = "Advanced C# Programming", Price = 150.00m };
+            CourseStore courseStore = new CourseStore();
+            courseStore.Add(course1);
+            courseStore.Add(course2);
+            var retrievedCourse = courseStore.GetById(1);
+            Console.WriteLine($"Retrieved Course: {retrievedCourse?.Title}");
+            courseStore.Remove(1);
+            var allCourses = courseStore.GetAll();
+            Console.WriteLine("All Courses:");
+            foreach (var c in allCourses)
+            {
+                Console.WriteLine($" - {c.Title}");
+            }
 
         }
     }
