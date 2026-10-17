@@ -22,7 +22,7 @@
             Console.WriteLine("------------------------------------------------------------------------------");
             Store<Student> studentStore = new Store<Student>();
             var student1 = new Student { Id = 1, Name = "John Doe" };
-            var student2 = new Student { Id = 2, Name = "Jane Smith" };
+            var student2 = new Student { Id = 1, Name = "Jane Smith" };
             studentStore.Add(student1);
             studentStore.Add(student2);
             var retrievedStudent = studentStore.GetById(1);

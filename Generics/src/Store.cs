@@ -2,34 +2,37 @@
 
 public class Store<T> where T : IHasId
 {
-    public List<T> Items { get; set; }
+    public Dictionary<int, T> Items { get; set; }
     public void Add(T item)
     {
         if (this.Items == null)
         {
-            this.Items = new List<T>();
+            this.Items = new Dictionary<int, T>();
         }
-        Items.Add(item);
+        if (Items.ContainsKey(item.Id))
+        {
+            throw new ArgumentException($"An item with Id {item.Id} already exists.");
+        }
+        Items[item.Id] = item;
         Console.WriteLine($"Item added: {item}");
     }
 
     public T? GetById(int id)
     {
-        return Items.FirstOrDefault(c => c.Id == id);
+        return Items.GetValueOrDefault(id);
     }
 
     public void Remove(int id)
     {
-        var item = Items.FirstOrDefault(c => c.Id == id);
-        if (item != null)
+        if (Items.TryGetValue(id, out T item))
         {
-            Items.Remove(item);
+            Items.Remove(id);
             Console.WriteLine($"Item removed: {item}");
         }
     }
 
     public List<T> GetAll()
     {
-        return Items;
+        return new List<T>(Items.Values);
     }
 }
