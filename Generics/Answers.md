@@ -10,6 +10,13 @@ Step 2 — A store for courses
 
  Step 3 — One class for both
 
+ In Main Method :
  when you try to use the generic type Store<T> without specifying a type argument, you will encounter the error message: 
  Using the generic type Store<T> requires 1 type arguments
  Explaination: This error occurs because Store<T> is a generic class that requires a specific type to be provided when it is used.'.
+
+ In Store<T> class :
+ when you try to use the generic type Store<T> without specifying a type argument, you will encounter the error message:
+ 'T' does not contain a definition for 'Id' and no accessible extension method 'Id' accepting a first argument of type 'T' could be found (are you missing a using directive or an assembly reference?)
+ Explaination : This error occurs because the generic type parameter 'T' does not have a constraint that ensures it has an 'Id' property.
+

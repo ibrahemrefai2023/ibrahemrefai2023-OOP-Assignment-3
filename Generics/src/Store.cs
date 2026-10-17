@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Store<T>
+public class Store<T> where T : IHasId
 {
     public List<T> Items { get; set; }
     public void Add(T item)
